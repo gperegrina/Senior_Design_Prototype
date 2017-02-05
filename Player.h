@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML\Graphics.hpp>
+#include <SFML\Audio.hpp>
 #include "Animation.h"
 
 class Player
@@ -10,6 +11,11 @@ public:
 
 	void Update(float deltaTime);
 	void Draw(sf::RenderWindow& window);
+
+	//Sound settings
+	sf::SoundBuffer soundBuf;
+	sf::Sound sound;
+
 
 private:
 	sf::RectangleShape body;
