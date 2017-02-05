@@ -22,10 +22,13 @@ Player::~Player()
 void Player::Update(float deltaTime)
 {
 	sf::Vector2f movement(0.0f, 0.0f);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+		sound.play();
 		movement.x -= speed * deltaTime;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 		movement.x += speed * deltaTime;
+	}
 
 	if (movement.x == 0.0f)
 	{

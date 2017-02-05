@@ -1,4 +1,5 @@
 #include <SFML\Graphics.hpp>
+#include <SFML\Audio.hpp>
 #include <iostream>
 #include "Animation.h"
 #include "Player.h"
@@ -12,6 +13,10 @@ int main() {
 	//player.setOrigin(50.0f, 50.0f);
 	//1 old animation player.setPosition(206.0f, 206.0f);
 
+	
+
+
+
 
 	//Attempting to put the background Image in
 	sf::RectangleShape background(sf::Vector2f(512.0f, 512.0f));
@@ -23,7 +28,7 @@ int main() {
 	//background.setPosition(250.0f, 250.0f);
 	sf::Texture backgroundImage;
 	//backgroundImage.loadFromFile("Woods.png");
-	backgroundImage.loadFromFile("Tiled_Squares.jpg");
+	backgroundImage.loadFromFile("Woods.png");
 	background.setTexture(&backgroundImage);
 	
 
@@ -37,6 +42,9 @@ int main() {
 	//New texture coordinates
 	Player player(&playerTexture, sf::Vector2u(3, 2), 0.3f, 100.0f);
 
+	if (!player.soundBuf.loadFromFile("test.wav"))
+		std::cout << "can't open sound file" << std::endl;
+	player.sound.setBuffer(player.soundBuf);
 
 	float deltaTime = 0.0f;
 	sf::Clock clock;
