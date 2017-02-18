@@ -7,7 +7,7 @@
 using namespace std;
 int main() {
 	
-	sf::RenderWindow window(sf::VideoMode(512, 512), "Fight Hard Yeah! Tower Defense Game", sf::Style::Close | sf::Style::Resize);
+	sf::RenderWindow window(sf::VideoMode(720, 480), "Fight Hard Yeah! Tower Defense Game", sf::Style::Close | sf::Style::Resize);
 	//1 old animation sf::RectangleShape player(sf::Vector2f(100.0f, 150.0f));
 	//player.setFillColor(sf::Color::Magenta);
 	//player.setOrigin(50.0f, 50.0f);
@@ -16,13 +16,14 @@ int main() {
 	//Main Music Sound
 	sf::SoundBuffer mainsoundBuf;
 	sf::Sound mainSound;
+	std::cout << "loading in background music" << std::endl;
 	if (!mainsoundBuf.loadFromFile("Punks.wav"))
 		std::cout << "can't open sound file" << std::endl;
 	mainSound.setBuffer(mainsoundBuf);
 	mainSound.play();
 
 	//Attempting to put the background Image in
-	sf::RectangleShape background(sf::Vector2f(512.0f, 512.0f));
+	sf::RectangleShape background(sf::Vector2f(720.0f, 480.0f));
 	background.setPosition(0.0f, 0.0f);
 
 	//background.setFillColor(sf::Color::Magenta);
@@ -31,9 +32,18 @@ int main() {
 	//background.setPosition(250.0f, 250.0f);
 	sf::Texture backgroundImage;
 	//backgroundImage.loadFromFile("Woods.png");
-	backgroundImage.loadFromFile("Woods.png");
+	backgroundImage.loadFromFile("mario.png");
 	background.setTexture(&backgroundImage);
 	
+
+	sf::RectangleShape backgroundTree(sf::Vector2f(150.0f, 150.0f));
+	backgroundTree.setPosition(330.0f, 180.0f);
+
+	sf::Texture treeTexture;
+	treeTexture.loadFromFile("transparent_tree.png");
+	backgroundTree.setTexture(&treeTexture);
+
+
 
 	sf::Texture playerTexture;
 	playerTexture.loadFromFile("char_sprite_walk2.png");
@@ -118,14 +128,19 @@ int main() {
 		//old animation animation.Update(0, deltaTime, false);
 		//player.setTextureRect(animation.uvRect);
 
+		
+
 		player.Update(deltaTime);
 
 
 		window.clear(sf::Color(125, 125, 125));
 		window.draw(background);
+
 		//window.clear();
 		player.Draw(window);
 		//window.draw(player);
+		window.draw(backgroundTree);
+
 		window.display();
 
 		}

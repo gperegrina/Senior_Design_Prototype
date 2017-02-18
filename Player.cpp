@@ -8,7 +8,7 @@ Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, 
 	row = 0;
 	faceRight = true;
 
-	body.setSize(sf::Vector2f(100.0f, 100.0f));
+	body.setSize(sf::Vector2f(50.0f, 50.0f));
 	body.setPosition(206.0f, 206.0f);
 	body.setTexture(texture);
 
@@ -24,10 +24,25 @@ void Player::Update(float deltaTime)
 	sf::Vector2f movement(0.0f, 0.0f);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 		sound.play();
+		std::cout << "moving left" << std::endl;
 		movement.x -= speed * deltaTime;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+		std::cout << "moving right" << std::endl;
+
 		movement.x += speed * deltaTime;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+		std::cout << "moving up" << std::endl;
+
+		movement.y -= speed * deltaTime;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+		std::cout << "moving down" << std::endl;
+		movement.y += speed * deltaTime;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+		std::cout << "Menu Being Displayed" << std::endl;
 	}
 
 	if (movement.x == 0.0f)
